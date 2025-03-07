@@ -12,20 +12,20 @@
     <div class="container">
         <h2>📌 To-Do List</h2>
 
-        <!-- Show All Tasks Section -->
+       
         <div class="show-all-section">
             <input type="checkbox" id="show-all-checkbox">
             <label for="show-all-checkbox">Show All Tasks</label>
         </div>
 
-        <!-- Input Section -->
+      
         <div class="input-section">
             <input type="text" id="task-title" placeholder="Enter a new task">
             <input type="file" id="task-image">
             <button id="add-task">Add</button>
         </div>
 
-        <!-- Task List Table -->
+       
         <div class="task-list">
             <table>
                 <thead>
@@ -60,7 +60,7 @@
         $(document).ready(function() {
             $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
 
-            // Add Task with Image
+          
             $('#add-task').click(function() {
                 var title = $('#task-title').val().trim();
                 var imageFile = $('#task-image')[0].files[0];
@@ -98,12 +98,12 @@
                 });
             });
 
-            // Select/Deselect All Tasks
+          
             $('#select-all-tasks').change(function() {
                 $('.task-checkbox').prop('checked', $(this).prop('checked'));
             });
 
-            // Show All Tasks
+          
             $('#show-all-checkbox').change(function() {
                 if ($(this).is(':checked')) {
                     $.get('/', function(data) {
@@ -114,10 +114,10 @@
                 }
             });
 
-            // Complete Task
+          
             $(document).on('change', '.task-checkbox', function() {
                 var taskId = $(this).data('id');
-                var completed = $(this).is(':checked') ? 1 : 0; // Convert to integer
+                var completed = $(this).is(':checked') ? 1 : 0; 
 
                 $.ajax({
                     url: '/tasks/' + taskId,
@@ -129,7 +129,7 @@
                 });
             });
 
-            // Delete Single Task
+         
             $(document).on('click', '.delete-task', function() {
                 var taskId = $(this).data('id');
                 if (!confirm('Are you sure you want to delete this task?')) return;
